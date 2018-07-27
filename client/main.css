@@ -1,4 +1,4 @@
-body {
-  padding: 10px;
-  font-family: sans-serif;
+.imgFormat{
+	border: 5px solid silver;
+	border-radius: 15px 5px;
 }
