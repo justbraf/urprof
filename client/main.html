@@ -39,9 +39,9 @@
 				<h4><input type="text" name="proLast" placeholder="Last Name"></h4>
 				<fieldset>
 					<div>
-						<input type="radio" id="male" name="sex" checked />
+						<input type="radio" id="male" name="sex" value="male" checked />
 						<label for="male">Male</label>
-						<input type="radio" id="female" name="sex" />
+						<input type="radio" id="female" name="sex" value="female" />
 						<label for="male">Female</label>
 					</div>
 				</fieldset>
@@ -56,11 +56,23 @@
 </template>
 
 <template name="allProfiles">
-	<div class="row justify-content-center">
-		<div class="col-3 imgFormat">
-			<img src="dp.jpg" alt="dp">
-			<i class="zmdi zmdi-thumb-up zmdi-hc-2x"></i>
-			<i class="zmdi zmdi-thumb-down zmdi-hc-2x"></i>
+	<div class="row justify-content-around">
+		{{#each allProfs}}
+		<div class="col-3 imgFormat text-center" id={{_id}}>
+			<img class="thmb" src={{img}} alt={{img}}>
+			<h3>{{firstName}}</h3>
+			<div class="row justify-content-around">
+				<div class="col-3">
+					<i class="zmdi zmdi-thumb-up zmdi-hc-2x"></i>
+				</div>
+				<div class="col-3">
+					<i class="zmdi zmdi-thumb-down zmdi-hc-2x"></i>
+				</div>
+				<div class="col-3">
+					<i class="zmdi zmdi-delete zmdi-hc-2x delbtn"></i>
+				</div>
+			</div>
 		</div>
+		{{/each}}
 	</div>
 </template>
