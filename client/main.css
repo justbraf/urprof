@@ -1,6 +1,7 @@
 .imgFormat{
 	border: 5px solid silver;
-	border-radius: 15px 5px;
+	border-radius: 50px 5px;
+	padding: 30px;
 }
 
 .thmb{

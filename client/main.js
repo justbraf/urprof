@@ -30,5 +30,18 @@ Template.allProfiles.helpers({
 Template.allProfiles.events({
 	'click .delbtn'(event, instance){
 		console.log(event.currentTarget.id);
+	},
+	'click .viewbtn'(event, instance){
+		$("#viewModal input[name='proID']").val(this._id);
+		$("#viewModal").modal("show");
+	}
+});
+
+Template.viewProfile.helpers({
+	profFirstName(){
+		var profID = $("#viewModal input[name='proID']").val();
+		console.log(profID);
+		return $("#viewModal input[name='proID']").val();
+		// return profDataDB.findOne({_id: profID}).firstName;
 	}
 });
