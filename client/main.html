@@ -16,8 +16,8 @@
 </body>
 
 <template name="addProfile">
-	<div class="row mt-5 mb-5">
-		<div class="col">
+	<div class="row mt-5 mb-5 justify-content-end">
+		<div class="col-2">
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
 				Add a Profile
@@ -40,9 +40,9 @@
 				<h4><input type="text" name="proLast" placeholder="Last Name"></h4>
 				<fieldset>
 					<div>
-						<input type="radio" id="male" name="sex" value="male" checked />
+						<input type="radio" name="sex" value="male" checked />
 						<label for="male">Male</label>
-						<input type="radio" id="female" name="sex" value="female" />
+						<input type="radio" name="sex" value="female" />
 						<label for="male">Female</label>
 					</div>
 				</fieldset>
@@ -59,28 +59,43 @@
 <template name="viewProfile">	
 	<!-- Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="viewModalLabel">Viewing {{profFirstName}}'s Profile</h5>
+				<h5 class="modal-title" id="viewModalLabel">Viewing <!-- {{profFirstName}}'s  -->Profile</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<h4><input type="text" name="proID"></h4>
-				<h4><input type="text" name="proFirst" placeholder="First Name"></h4>
-				<h4><input type="text" name="proLast" placeholder="Last Name"></h4>
-				<fieldset>
+				<div class="row">
+					<div class="col-8">
+						<img class="viewImg" src="NoImage" alt="No Image">						
+					</div>
+					<div class="col-4">
+						<h5>Name:</h5>
+						<h4 class="profileName mb-4"></h4>
+						<h5>Gender:</h5>
+						<h4 class="gender mb-4"></h4>
+						<h4 class="profLikes"></h4>
+						<h4 class="profDislikes"></h4>
+					</div>
+				</div>
+				
+				<h4><input type="hidden" name="proID"></h4>
+				<!-- <h4><input type="text" name="proFirst" placeholder="First Name"></h4>
+				<h4><input type="text" name="proLast" placeholder="Last Name"></h4> -->
+				<!-- <fieldset>
 					<div>
-						<input type="radio" id="male" name="sex" value="male" checked />
+						<input type="radio" name="sex" value="male" checked />
 						<label for="male">Male</label>
-						<input type="radio" id="female" name="sex" value="female" />
+						<input type="radio" name="sex" value="female" />
 						<label for="male">Female</label>
 					</div>
-				</fieldset>
+				</fieldset> -->
 			</div>
 			<div class="modal-footer">
+				<button type="button" class="btn btn-danger delbtn" data-dismiss="modal"><i class="zmdi zmdi-delete zmdi-hc-lg"></i></button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
@@ -91,19 +106,21 @@
 <template name="allProfiles">
 	<div class="row justify-content-around">
 		{{#each allProfs}}
-		<div class="col-3 imgFormat text-center" id={{_id}}>
+		<div class="col-3 imgFormat text-center ml-1 mr-1" id={{_id}}>
+			<div class="row justify-content-end mb-4">
+				<div class="col-3">
+					<i class="zmdi zmdi-open-in-browser zmdi-hc-2x viewbtn"></i>
+				</div>
+			</div>
 			<img class="thmb pb-3"  src={{img}} alt={{img}}>
 			<h3>{{firstName}}</h3>
 			<div class="row justify-content-around">
 				<div class="col-3">
-					<i class="zmdi zmdi-thumb-up zmdi-hc-2x"></i>
+					<i class="zmdi zmdi-thumb-up zmdi-hc-2x upvote">&nbsp;{{likes}}</i>
 				</div>
 				<div class="col-3">
-					<i class="zmdi zmdi-thumb-down zmdi-hc-2x"></i>
-				</div>
-				<div class="col-3">
-					<i class="zmdi zmdi-open-in-browser zmdi-hc-2x viewbtn"></i>
-				</div>
+					<i class="zmdi zmdi-thumb-down zmdi-hc-2x downvote">&nbsp;{{dislikes}}</i>
+				</div>				
 			</div>
 		</div>
 		{{/each}}
